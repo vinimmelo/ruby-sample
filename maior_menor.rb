@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+#@vinimmelo
 
 def da_boas_vindas
   puts 'Bem vindo ao jogo da adivinhação'
@@ -28,11 +29,11 @@ def verifica_se_acertou(numero_secreto, chute)
     puts "Acertou, parabéns!!!"
     return true
   end
-    if chute > numero_secreto
-      puts "O número é menor."
-    else
-      puts "O número é maior."
-    end
+  if chute > numero_secreto
+    puts "O número é menor."
+  else
+    puts "O número é maior."
+  end
   false
 end
 
