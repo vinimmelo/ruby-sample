@@ -1,3 +1,6 @@
 
 #Extensions to be ignore
 *.xml
+
+#Folders to be ignore
+.idea/
