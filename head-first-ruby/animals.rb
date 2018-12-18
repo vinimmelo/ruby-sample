@@ -64,7 +64,8 @@ rex = Dog.new
 rex.name = 'Rex'
 rex.age = 7
 fido.name = "Pingo"
-fredo.move
+fredo.name = "Alfredinho"
+fredo.move("Broken Windows")
 fredo.name = 'TwinkleWinkee'
 fido.age = 11
 fredo.age = 3
