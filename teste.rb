@@ -40,5 +40,11 @@ def casserole_use
   end
 end
 
-p [1, 2, 3, 4, 5].find_all { |number| number.even? }
-p [1, 2, 3, 4, 5].find_all { |number| number.odd? }
+# p [1, 2, 3, 4, 5].find_all { |number| number.even? }
+# p [1, 2, 3, 4, 5].find_all { |number| number.odd? }
+
+def area(options)
+  options[:length] * options[:width]
+end
+
+puts area({:length => 2, :width => 4})
