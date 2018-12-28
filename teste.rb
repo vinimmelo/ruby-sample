@@ -40,11 +40,24 @@ def casserole_use
   end
 end
 
-# p [1, 2, 3, 4, 5].find_all { |number| number.even? }
-# p [1, 2, 3, 4, 5].find_all { |number| number.odd? }
-
-def area(options)
-  options[:length] * options[:width]
+module Curious
+  def investigate(thing)
+    puts "Looks at #{thing}"
+  end
 end
 
-puts area({:length => 2, :width => 4})
+module Clumsy
+  def break(thing)
+    puts "Knocks over #{thing}"
+  end
+end
+
+class Monkey
+  include Curious
+  include Clumsy
+end
+
+
+bubbles = Monkey.new
+bubbles.investigate("vase")
+bubbles.break("vase")
