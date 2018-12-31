@@ -10,7 +10,7 @@ end
 
 def pede_um_chute
   puts 'Entre com a letra ou palavra'
-  chute = gets.strip
+  chute = gets.strip.downcase
   puts "Será que acertou? Você chutou #{chute}"
   chute
 end
@@ -23,10 +23,13 @@ def nao_quer_jogar?
 end
 
 
-def sorteia_palavra_secreta
-  puts 'Escolhendo uma palavra secreta...'
-  palavra_secreta = 'programador'
-  puts "Palavra secreta com #{palavra_secreta.size} letras"
+def avisa_escolhendo_palavra
+  puts 'Escolhendo uma palavra...'
+end
+
+
+def avisa_palavra_escolhida(palavra_secreta)
+  puts "Escolhida uma palavra com #{palavra_secreta.size} letras... boa sorte!"
   palavra_secreta
 end
 
@@ -59,4 +62,9 @@ def cabecalho_de_tentativa(chutes, erros, mascara)
     puts "Palavra secreta: #{mascara}"
     puts "Erros até agora: #{erros}"
     puts "Chutes até agora: #{chutes}"
+end
+
+
+def avisa_pontos_totais pontos
+  puts "Você possui #{pontos} pontos."
 end
