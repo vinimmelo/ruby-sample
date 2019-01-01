@@ -1,6 +1,8 @@
 # @vinimmelo - Vinícius Melo
+# Logic of Força game!
 
 require_relative 'ui'
+require_relative 'rank'
 
 
 def joga(nome)
@@ -76,18 +78,6 @@ def sorteia_palavra_secreta
     avisa_palavra_escolhida palavra_secreta
 end
 
-
-def salva_rank nome, pontos
-  conteudo = "#{nome}\n#{pontos}"
-  File.write "rank.txt", conteudo
-end
-
-
-def le_rank
-  conteudo_atual = File.read('rank.txt')
-  dados = conteudo_atual.split "\n"
-  dados
-end
 
 def avisa_campeao_atual dados
   puts "Nosso campeão atual é #{dados[0]} com #{dados[1]} pontos."
