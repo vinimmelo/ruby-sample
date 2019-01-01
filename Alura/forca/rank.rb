@@ -1,5 +1,3 @@
-# Public: Main module that begin the game.
-
 def salva_rank nome, pontos
   conteudo = "#{nome}\n#{pontos}"
   File.write "rank.txt", conteudo
