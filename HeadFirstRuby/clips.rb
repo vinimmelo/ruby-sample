@@ -18,7 +18,7 @@ class Clip
 end
 
 
-class Video < Clip
+class Video < Clip 
   include AcceptsComments
   attr_accessor :resolution
 end
