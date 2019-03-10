@@ -16,3 +16,9 @@ def pede_movimento
   puts "Para onde deseja ir?"
   movimento = gets.upcase.strip
 end
+
+
+def game_over
+  puts "\n\n\n\n\n\n"
+  puts "Game Over"
+end
