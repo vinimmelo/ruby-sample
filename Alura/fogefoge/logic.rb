@@ -1,4 +1,5 @@
 require_relative 'ui'
+require_relative 'heroi'
 
 
 def joga(nome)
@@ -7,13 +8,12 @@ def joga(nome)
     desenha mapa
     direcao = pede_movimento
     heroi = encontra_jogador(mapa)
-    nova_posicao = calcula_nova_posicao heroi, direcao
-    unless posicao_valida? mapa, nova_posicao
-      next
-    end
+    nova_posicao = heroi.calcula_nova_posicao(direcao)
 
-    mapa[heroi[0]][heroi[1]] = " "
-    mapa[nova_posicao[0]][nova_posicao[1]] = 'H'
+    next unless posicao_valida? mapa, nova_posicao.to_array
+
+    heroi.remove_do(mapa)
+    nova_posicao.coloca_no(mapa)
     mapa = move_fantasmas mapa
     if jogador_perdeu?(mapa)
       game_over
@@ -33,38 +33,18 @@ def posicao_valida?(mapa, posicao)
   estourou_linha = posicao[0] < 0 || posicao[0] >= linhas
   estourou_coluna = posicao[1] < 0 || posicao[1] >= colunas
 
-  if estourou_linha || estourou_coluna
-    return false
-  end
+  return false if estourou_linha || estourou_coluna
 
   valor_local = mapa[posicao[0]][posicao[1]]
-  if valor_local == "X" || valor_local == "F"
-    return false
-  end
+  return false if valor_local == 'X' || valor_local == 'F'
 
   true
-end
-
-
-def calcula_nova_posicao(heroi, direcao)
-  heroi = heroi.dup
-  movimentos = {
-    "W" => [-1, 0],
-    "S" => [+1, 0],
-    "A" => [0, -1],
-    "D" => [0, +1]
-  }
-  movimento = movimentos[direcao]
-  heroi[0] += movimento[0]
-  heroi[1] += movimento[1]
-  heroi
 end
 
 def inicia_fogefoge
   nome = da_boas_vindas
   joga nome
 end
-
 
 def le_mapa(numero)
   arquivo = "mapa#{numero}.txt"
@@ -73,48 +53,44 @@ def le_mapa(numero)
 end
 
 def encontra_jogador(mapa)
-  caracter_do_heroi = "H"
+  caracter_do_heroi = 'H'
   mapa.each_with_index do |linha_atual, linha|
     coluna_do_heroi = linha_atual.index caracter_do_heroi
     if coluna_do_heroi
-      return [linha, coluna_do_heroi]
+      heroi = Heroi.new
+      heroi.linha = linha
+      heroi.coluna = coluna_do_heroi
+      return heroi
     end
   end
   nil
 end
 
 def move_fantasmas(mapa)
-  caracter_do_fantasma = "F"
+  caracter_do_fantasma = 'F'
   novo_mapa = copia_mapa mapa
   mapa.each_with_index do |linha_atual, linha|
     linha_atual.chars.each_with_index do |caractere_atual, coluna|
       eh_fantasma = caractere_atual == caracter_do_fantasma
-      if eh_fantasma
-        move_fantasma mapa, novo_mapa, linha, coluna
-      end
+      move_fantasma mapa, novo_mapa, linha, coluna if eh_fantasma
     end
   end
 end
 
-
 def move_fantasma(mapa, novo_mapa, linha, coluna)
   posicoes = posicoes_validas_a_partir_de mapa, novo_mapa, [linha, coluna]
-  if posicoes.empty?
-    return
-  end
+  return if posicoes.empty?
 
   aleatoria = rand posicoes.size
   posicao = posicoes[aleatoria]
 
-  mapa[linha][coluna] = " "
-  novo_mapa[posicao[0]][posicao[1]] = "F"
+  mapa[linha][coluna] = ' '
+  novo_mapa[posicao[0]][posicao[1]] = 'F'
 end
-
 
 def copia_mapa(mapa)
-  novo_mapa = mapa.join("\n").tr("F", " ").split("\n")
+  novo_mapa = mapa.join("\n").tr('F', ' ').split("\n")
 end
-
 
 def soma(vetor1, vetor2)
   [vetor1[0] + vetor2[0], vetor1[1] + vetor2[1]]

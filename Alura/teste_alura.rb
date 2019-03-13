@@ -1,7 +1,7 @@
-array_teste = [50, 150, 300]
+bemvindo = -> (nome) {
+  puts "Bem vindo #{nome}"
+}
 
-for item in array_teste
-  puts item
-end
-
-puts array_teste
+teste = bemvindo
+bemvindo.call 'Vinicius'
+bemvindo.call 'Thais'
