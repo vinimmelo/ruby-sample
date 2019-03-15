@@ -3,16 +3,20 @@ require_relative 'heroi'
 
 
 def joga(nome)
-  mapa = le_mapa 2
+  mapa = le_mapa 4
   while true
     desenha mapa
     direcao = pede_movimento
     heroi = encontra_jogador(mapa)
     nova_posicao = heroi.calcula_nova_posicao(direcao)
 
-    next unless posicao_valida? mapa, nova_posicao.to_array
+    next unless posicao_valida?(mapa, nova_posicao.to_array)
 
     heroi.remove_do(mapa)
+    if mapa[nova_posicao.linha][nova_posicao.coluna] == "*"
+      remove mapa, nova_posicao, 4
+    end
+
     nova_posicao.coloca_no(mapa)
     mapa = move_fantasmas mapa
     if jogador_perdeu?(mapa)
@@ -22,6 +26,22 @@ def joga(nome)
   end
 end
 
+def executa_remocao mapa, posicao, quantidade
+  if mapa[posicao.linha][posicao.coluna] == 'X'
+    return
+  end
+  mapa[posicao.linha][posicao.coluna] = ' '
+  remove mapa, posicao, quantidade - 1
+end
+
+def remove(mapa, posicao, quantidade)
+  return unless quantidade > 0
+  executa_remocao mapa, posicao.direita, quantidade
+  executa_remocao mapa, posicao.baixo, quantidade
+  executa_remocao mapa, posicao.cima, quantidade
+  executa_remocao mapa, posicao.esquerda, quantidade
+end
+
 def jogador_perdeu?(mapa)
   perdeu = !encontra_jogador(mapa)
 end
@@ -29,10 +49,9 @@ end
 def posicao_valida?(mapa, posicao)
   linhas = mapa.size
   colunas = mapa[0].size
-
   estourou_linha = posicao[0] < 0 || posicao[0] >= linhas
   estourou_coluna = posicao[1] < 0 || posicao[1] >= colunas
-
+  
   return false if estourou_linha || estourou_coluna
 
   valor_local = mapa[posicao[0]][posicao[1]]
@@ -75,6 +94,7 @@ def move_fantasmas(mapa)
       move_fantasma mapa, novo_mapa, linha, coluna if eh_fantasma
     end
   end
+  novo_mapa
 end
 
 def move_fantasma(mapa, novo_mapa, linha, coluna)
