@@ -4,6 +4,6 @@
 
 #Folders to be ignore
 .idea/
-temp/
+tmp/
 node_modules/
 *sqlite3
