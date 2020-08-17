@@ -1,0 +1,55 @@
+Started GET "/" for ::1 at 2020-08-14 22:45:15 -0300
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (Duration: 0.6ms | Allocations: 460)
+[Webpacker] Compiling…
+[Webpacker] Compiled all packs in /home/thelink/Documents/personal/ruby-sample/RailsUdemy/alpha-blog/public/packs
+[Webpacker] Browserslist: caniuse-lite is outdated. Please run next command `yarn upgrade`
+
+Completed 200 OK in 2510ms (Views: 2506.6ms | ActiveRecord: 0.0ms | Allocations: 1264241)
+
+
+Started GET "/pages/about" for ::1 at 2020-08-14 22:45:19 -0300
+Processing by PagesController#about as HTML
+  Rendering pages/about.html.erb within layouts/application
+  Rendered pages/about.html.erb within layouts/application (Duration: 0.3ms | Allocations: 162)
+Completed 200 OK in 4ms (Views: 3.4ms | ActiveRecord: 0.0ms | Allocations: 5304)
+
+
+Started GET "/" for ::1 at 2020-08-14 22:45:21 -0300
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (Duration: 0.1ms | Allocations: 50)
+Completed 200 OK in 5ms (Views: 4.3ms | ActiveRecord: 0.0ms | Allocations: 5037)
+
+
+Started GET "/pages/about" for ::1 at 2020-08-14 22:45:22 -0300
+Processing by PagesController#about as HTML
+  Rendering pages/about.html.erb within layouts/application
+  Rendered pages/about.html.erb within layouts/application (Duration: 0.2ms | Allocations: 47)
+Completed 200 OK in 7ms (Views: 5.8ms | ActiveRecord: 0.0ms | Allocations: 5024)
+
+
+Started GET "/" for ::1 at 2020-08-16 17:58:36 -0300
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (Duration: 0.8ms | Allocations: 297)
+Completed 200 OK in 812ms (Views: 807.5ms | ActiveRecord: 0.0ms | Allocations: 1253953)
+
+
+Started GET "/pages/about" for ::1 at 2020-08-16 17:58:39 -0300
+Processing by PagesController#about as HTML
+  Rendering pages/about.html.erb within layouts/application
+  Rendered pages/about.html.erb within layouts/application (Duration: 0.7ms | Allocations: 162)
+Completed 200 OK in 6ms (Views: 5.5ms | ActiveRecord: 0.0ms | Allocations: 5277)
+
+
+Started GET "/" for ::1 at 2020-08-16 17:58:40 -0300
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (Duration: 0.1ms | Allocations: 50)
+Completed 200 OK in 4ms (Views: 3.8ms | ActiveRecord: 0.0ms | Allocations: 5015)
+
+
