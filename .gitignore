@@ -8,3 +8,4 @@ tmp/
 node_modules/
 *sqlite3
 *.log
+*byebug*
